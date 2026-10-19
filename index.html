@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Для самой особенной Амины</title>
+<style>
+:root{
+  --bg1:#fff0f6;--bg2:#f3e8ff;--bg3:#e8f4ff;
+  --pink:#ff8fb8;--pink-d:#e0609a;--lilac:#b99cf0;--mint:#9fe6cf;--peach:#ffd1a9;
+  --ink:#5a3e5c;--muted:#8b6f8e;--card:rgba(255,255,255,.72);
+  --shadow:0 12px 40px rgba(224,96,154,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Nunito","Segoe UI",system-ui,sans-serif;color:var(--ink);
+  background:linear-gradient(135deg,var(--bg1),var(--bg2) 50%,var(--bg3));
+  background-attachment:fixed;overflow-x:hidden;min-height:100vh;
+}
+body::before{
+  content:"";position:fixed;inset:-20%;z-index:-1;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(255,143,184,.25),transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(185,156,240,.25),transparent 40%),
+    radial-gradient(circle at 60% 10%,rgba(159,230,207,.2),transparent 35%);
+  animation:drift 18s ease-in-out infinite alternate;
+}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(-3%,2%) scale(1.06)}}
+
+section{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 20px;position:relative}
+h1,h2{font-family:"Pacifico","Comfortaa",cursive,system-ui;font-weight:400;line-height:1.2;text-align:center}
+h1{font-size:clamp(2.2rem,7vw,4.2rem);color:var(--pink-d);text-shadow:0 4px 18px rgba(255,143,184,.45)}
+h2{font-size:clamp(1.7rem,5vw,2.6rem);color:var(--lilac);margin-bottom:28px}
+p.lead{font-size:clamp(1.05rem,2.6vw,1.25rem);max-width:640px;text-align:center;color:var(--muted);line-height:1.7}
+
+.hero-emoji{font-size:64px;animation:bob 3s ease-in-out infinite;display:inline-block}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-14px) rotate(4deg)}}
+
+.typed{min-height:1.6em;margin-top:18px;font-size:1.2rem;color:var(--pink-d);font-weight:700;text-align:center}
+.caret{display:inline-block;width:2px;background:var(--pink-d);margin-left:2px;animation:blink 1s steps(2) infinite;vertical-align:middle;height:1.1em}
+@keyframes blink{50%{opacity:0}}
+
+.btn{
+  margin-top:30px;padding:14px 30px;border:none;border-radius:999px;cursor:pointer;
+  background:linear-gradient(90deg,var(--pink),var(--lilac));color:#fff;font-size:1.05rem;font-weight:700;
+  box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s;font-family:inherit;
+}
+.btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 18px 40px rgba(185,156,240,.45)}
+.btn:active{transform:scale(.97)}
+
+.grid{display:grid;gap:20px;width:100%;max-width:900px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{
+  background:var(--card);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.8);border-radius:28px;padding:28px 24px;box-shadow:var(--shadow);
+  text-align:center;opacity:0;transform:translateY(40px) scale(.96);
+  transition:opacity .8s ease,transform .8s cubic-bezier(.2,.9,.3,1.2),box-shadow .3s;
+}
+.card.in{opacity:1;transform:none}
+.card:hover{box-shadow:0 22px 50px rgba(185,156,240,.35)}
+.card .ico{font-size:40px;display:block;margin-bottom:10px;transition:transform .4s}
+.card:hover .ico{transform:scale(1.25) rotate(-8deg)}
+.card h3{font-size:1.2rem;color:var(--pink-d);margin-bottom:8px}
+.card p{color:var(--muted);line-height:1.6}
+
+.quality-list{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:760px}
+.chip{
+  padding:12px 20px;border-radius:999px;background:var(--card);box-shadow:var(--shadow);
+  font-weight:700;color:var(--ink);cursor:pointer;transition:transform .25s,background .25s;border:2px solid transparent;
+}
+.chip:hover{transform:translateY(-4px) rotate(-2deg)}
+.chip.on{background:linear-gradient(90deg,var(--mint),var(--pink));color:#fff;transform:scale(1.08)}
+
+.mirror{
+  width:min(92vw,520px);padding:36px 28px;border-radius:32px;text-align:center;
+  background:linear-gradient(160deg,rgba(255,255,255,.9),rgba(255,236,246,.85));
+  box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.mirror::after{
+  content:"";position:absolute;top:-60%;left:-60%;width:40%;height:220%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
+  transform:rotate(25deg);animation:shine 4s ease-in-out infinite;
+}
+@keyframes shine{0%{left:-60%}60%,100%{left:130%}}
+.mirror p{font-size:1.15rem;line-height:1.8;color:var(--ink)}
+
+.permit{display:grid;gap:16px;width:100%;max-width:560px}
+.permit div{
+  padding:20px 24px;border-radius:22px;background:var(--card);box-shadow:var(--shadow);
+  font-size:1.1rem;font-weight:700;text-align:center;color:var(--ink);
+  opacity:0;transform:translateX(-30px);transition:all .7s ease;
+}
+.permit div.in{opacity:1;transform:none}
+.permit div:nth-child(2n){background:linear-gradient(90deg,rgba(159,230,207,.5),rgba(255,255,255,.8))}
+.permit div:nth-child(2n+1){background:linear-gradient(90deg,rgba(255,209,169,.5),rgba(255,255,255,.8))}
+
+.gen-box{
+  width:min(92vw,560px);min-height:170px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:30px;border-radius:30px;background:var(--card);box-shadow:var(--shadow);text-align:center;
+  font-size:1.3rem;line-height:1.6;color:var(--pink-d);font-weight:700;transition:opacity .35s,transform .35s;
+}
+.gen-box.swap{opacity:0;transform:scale(.94)}
+.gen-count{margin-top:14px;font-size:.9rem;color:var(--muted);font-weight:700}
+.gen-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+.gen-row .btn{margin-top:0}
+
+.wins{width:100%;max-width:520px;display:grid;gap:12px}
+.win{
+  display:flex;align-items:center;gap:14px;padding:16px 20px;border-radius:20px;background:var(--card);
+  box-shadow:var(--shadow);cursor:pointer;user-select:none;transition:transform .2s;font-size:1.05rem;
+}
+.win:hover{transform:translateX(6px)}
+.win .box{
+  width:30px;height:30px;border-radius:10px;border:2px solid var(--lilac);display:grid;place-items:center;
+  font-size:18px;color:#fff;flex-shrink:0;transition:all .3s;
+}
+.win.done .box{background:linear-gradient(135deg,var(--mint),var(--pink));border-color:transparent;transform:rotate(360deg)}
+.win.done span.t{text-decoration:line-through;color:var(--muted)}
+.progress{width:100%;max-width:520px;height:12px;border-radius:999px;background:rgba(255,255,255,.7);overflow:hidden;margin-top:18px}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--lilac),var(--mint));transition:width .6s ease}
+
+.final{
+  background:linear-gradient(160deg,rgba(255,255,255,.85),rgba(243,232,255,.85));
+  border-radius:40px;padding:50px 30px;max-width:720px;box-shadow:var(--shadow);text-align:center;
+}
+.final p{font-size:clamp(1.05rem,2.6vw,1.25rem);line-height:1.85;color:var(--ink);margin-bottom:16px}
+.sign{margin-top:26px;font-family:"Pacifico",cursive,system-ui;font-size:1.5rem;color:var(--pink-d)}
+.sign small{display:block;font-family:"Nunito",sans-serif;font-size:1rem;color:var(--muted);margin-top:6px}
+
+.heart-float{position:fixed;bottom:-40px;z-index:0;pointer-events:none;user-select:none;animation:rise linear forwards}
+@keyframes rise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+
+.fixed-btns{position:fixed;right:22px;bottom:22px;z-index:20;display:flex;flex-direction:column;gap:12px;align-items:flex-end}
+.pill{
+  padding:14px 20px;border:none;border-radius:999px;cursor:pointer;color:#fff;font-weight:700;font-family:inherit;font-size:.95rem;
+  background:linear-gradient(90deg,var(--peach),var(--pink));box-shadow:0 10px 30px rgba(255,143,184,.5);
+  animation:pulse 2.4s ease-in-out infinite;
+}
+.pill.music{background:linear-gradient(90deg,var(--lilac),var(--mint));animation:none}
+.pill.music.on{box-shadow:0 0 0 0 rgba(185,156,240,.6);animation:glow 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes glow{0%{box-shadow:0 0 0 0 rgba(185,156,240,.6)}70%{box-shadow:0 0 0 14px rgba(185,156,240,0)}100%{box-shadow:0 0 0 0 rgba(185,156,240,0)}}
+.warm-msg{
+  position:fixed;right:22px;bottom:170px;z-index:21;max-width:270px;padding:16px 18px;border-radius:20px;
+  background:#fff;color:var(--ink);font-weight:700;line-height:1.5;box-shadow:var(--shadow);
+  opacity:0;transform:translateY(12px);transition:all .4s ease;pointer-events:none;
+}
+.warm-msg.show{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .card,.permit div{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<section id="top">
+  <span class="hero-emoji">🌷</span>
+  <h1 style="margin-top:14px">Для самой особенной Амины</h1>
+  <p class="lead">Этот маленький уголок создан только для тебя. Здесь нет правильных и неправильных ответов, нет спешки и нет требований. Просто немного тепла.</p>
+  <div class="typed"><span id="typed"></span><span class="caret"></span></div>
+  <button class="btn" onclick="document.getElementById('know').scrollIntoView()">Листай дальше ↓</button>
+</section>
+
+<section id="know">
+  <h2>Знаешь, какая ты?</h2>
+  <p class="lead" style="margin-bottom:26px">Нажимай на каждое слово. Так ты увидишь, каким тебя вижу я.</p>
+  <div class="quality-list" id="qualities">
+    <div class="chip">Добрая</div>
+    <div class="chip">Старательная</div>
+    <div class="chip">Целеустремлённая</div>
+    <div class="chip">Сильная</div>
+    <div class="chip">Смелая</div>
+    <div class="chip">Настоящая</div>
+    <div class="chip">Тёплая</div>
+    <div class="chip">Умная</div>
+  </div>
+  <p class="lead" id="qMsg" style="margin-top:26px;min-height:3em;color:var(--pink-d);font-weight:700"></p>
+</section>
+
+<section id="slow">
+  <h2>Не торопись</h2>
+  <div class="grid">
+    <div class="card"><span class="ico">🦵</span><h3>Колено заживает</h3><p>Восстановление бывает медленным, и это нормально. Тело делает свою работу, даже когда ты этого не видишь.</p></div>
+    <div class="card"><span class="ico">🌙</span><h3>Болезни не про слабость</h3><p>Когда ты болеешь, тебе нужно больше отдыха, а не больше самокритики. Береги себя.</p></div>
+    <div class="card"><span class="ico">🍵</span><h3>Маленькие шаги</h3><p>Каждый день, когда ты просто держишься, уже считается. Не обязательно быть в форме каждый день.</p></div>
+  </div>
+</section>
+
+<section id="mirror">
+  <h2>Посмотри на себя моими глазами</h2>
+  <div class="mirror">
+    <p>Я вижу девушку, которая не сдаётся, даже когда тяжело. Которая продолжает стараться, хотя ей бывает больно и устало. Я вижу, как ты заботишься о других и как тепло с тобой рядом. Такую тебя очень сложно не любить.</p>
+  </div>
+</section>
+
+<section id="permit">
+  <h2>Тебе сегодня можно</h2>
+  <div class="permit">
+    <div>Можно ничего не успевать</div>
+    <div>Можно поспать дольше, чем обычно</div>
+    <div>Можно сказать «мне тяжело»</div>
+    <div>Можно попросить помощи и не извиняться</div>
+    <div>Можно просто быть собой, без масок</div>
+    <div>Можно радоваться маленьким вещам</div>
+  </div>
+</section>
+
+<section id="gen">
+  <h2>Комплимент на сегодня</h2>
+  <div class="gen-box" id="genBox">
+    <span id="genText">Нажми кнопку, и я скажу тебе что-нибудь хорошее</span>
+    <span class="gen-count" id="genCount">100 комплиментов только для тебя</span>
+  </div>
+  <div class="gen-row">
+    <button class="btn" id="genBtn">Ещё один ✨</button>
+  </div>
+</section>
+
+<section id="wins">
+  <h2>Твои маленькие победы</h2>
+  <p class="lead" style="margin-bottom:22px">Отмечай то, что уже получилось. Даже самое маленькое.</p>
+  <div class="wins" id="winsList">
+    <div class="win"><div class="box">✓</div><span class="t">Сегодня я встала и позавтракала</span></div>
+    <div class="win"><div class="box">✓</div><span class="t">Я сделала разминку для колена</span></div>
+    <div class="win"><div class="box">✓</div><span class="t">Я отдохнула, когда устала</span></div>
+    <div class="win"><div class="box">✓</div><span class="t">Я не сдалась, даже когда было тяжело</span></div>
+    <div class="win"><div class="box">✓</div><span class="t">Я улыбнулась сегодня хотя бы раз</span></div>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+  <p class="lead" id="winsMsg" style="margin-top:16px;color:var(--pink-d);font-weight:700;min-height:1.6em"></p>
+</section>
+
+<section id="why">
+  <h2>Почему я тобой дорожу</h2>
+  <div class="grid">
+    <div class="card"><span class="ico">💗</span><h3>За твоё сердце</h3><p>За то, как ты относишься к людям и как умеешь быть рядом.</p></div>
+    <div class="card"><span class="ico">🌱</span><h3>За твою силу</h3><p>За то, что ты растёшь, учишься и не останавливаешься.</p></div>
+    <div class="card"><span class="ico">☀️</span><h3>За то, какая ты есть</h3><p>Ты не должна быть идеальной. Ты уже достаточно хорошая для меня.</p></div>
+  </div>
+</section>
+
+<section id="notalone">
+  <h2>Ты не одна</h2>
+  <p class="lead" style="max-width:620px">Даже когда тебе кажется, что всё слишком медленно или что ты отстаёшь, рядом есть человек, который гордится тобой просто за то, что ты идёшь. Ты не одна в этом, и я всегда рядом.</p>
+  <div style="font-size:64px;margin-top:30px;animation:bob 3.4s ease-in-out infinite">🫂</div>
+</section>
+
+<section id="final">
+  <div class="final">
+    <h2 style="margin-bottom:22px">Моё признание</h2>
+    <p>Я очень тебя люблю. Не за что-то конкретное, а просто за то, что ты есть.</p>
+    <p>Я горжусь тем, как ты справляешься, как стараешься, как не опускаешь руки. Ты молодец, даже в тяжёлые дни. Особенно в тяжёлые дни.</p>
+    <p>Береги себя, отдыхай, когда нужно, и знай: я буду рядом на каждом шаге.</p>
+    <div class="sign">с любовью для Амины от Германа 💗<small>— до самой луны и обратно</small></div>
+  </div>
+</section>
+
+<div class="fixed-btns">
+  <button class="pill music" id="musicBtn">🎵 Музыка: выкл</button>
+  <button class="pill" id="warmBtn">Мне нужно немного тепла</button>
+</div>
+<div class="warm-msg" id="warmMsg"></div>
+
+<script>
+(function(){
+  var COMPLIMENTS=[
+    "Ты самая милая девушка, которую я знаю.",
+    "Твоя улыбка делает мой день лучше.",
+    "Я люблю тебя так, как не умею объяснить словами.",
+    "Ты — моё любимое место на земле.",
+    "Ты очень сильная, даже когда тебе тяжело.",
+    "Ты умеешь быть доброй, даже когда устала.",
+    "Я горжусь тобой каждый день.",
+    "Рядом с тобой мне всегда спокойно.",
+    "Ты моё маленькое солнышко ☀️",
+    "Ты красивая не только снаружи, но и внутри.",
+    "Ты заслуживаешь всей нежности мира.",
+    "Твой смех — лучшее, что я слышал за этот день.",
+    "Я думаю о тебе чаще, чем могу сказать.",
+    "Ты делаешь обычные дни особенными.",
+    "С тобой даже тишина кажется тёплой.",
+    "Ты самый добрый человек из всех, кого я знаю.",
+    "Я люблю, как ты смотришь на мир: внимательно и с теплом.",
+    "Ты очень талантливая, и это видно во всём.",
+    "Ты молодец, что продолжаешь идти вперёд.",
+    "Мне нравится, какая ты настоящая.",
+    "Ты светишься изнутри, даже когда думаешь, что устала.",
+    "Ты лучшее, что со мной случалось.",
+    "Я восхищаюсь твоим упорством.",
+    "Ты умеешь поддержать, и это редкий дар.",
+    "Ты не обязана быть идеальной, чтобы быть любимой.",
+    "Твоё колено заживает, и я горжусь твоим терпением.",
+    "Каждый твой маленький шаг для меня очень важен.",
+    "Ты справляешься лучше, чем сама думаешь.",
+    "Я рад, что ты есть в моей жизни.",
+    "Ты такая уютная, с тобой хочется просто быть рядом.",
+    "Ты моя любимая мысль по утрам.",
+    "Ты очень смелая, даже когда страшно.",
+    "Ты умеешь заботиться о других, и это прекрасно.",
+    "Твоя доброта делает мир немного мягче.",
+    "Ты — причина, по которой я верю в хорошее.",
+    "Мне нравится, как ты думаешь и как чувствуешь.",
+    "Ты очень тёплая, как солнце в тихий день.",
+    "С тобой хочется делиться всем хорошим.",
+    "Ты такая целеустремлённая, что я любуюсь тобой.",
+    "Я горжусь каждым твоим достижением, даже самым маленьким.",
+    "Ты ценна просто потому, что ты — это ты.",
+    "Ты украшаешь любой день одним своим присутствием.",
+    "Я очень ценю, что ты рядом.",
+    "Ты самый лучший собеседник, с которым мне уютно молчать.",
+    "Твоя улыбка — моя любимая в мире.",
+    "Ты сильнее, чем думаешь, и красивее, чем себе позволяешь видеть.",
+    "Ты заслуживаешь отдыха и заботы, и я буду о тебе заботиться.",
+    "Выздоравливай скорее, я жду тебя здоровой и весёлой.",
+    "Береги себя, ты очень нужна мне здоровой.",
+    "Ты невероятно терпеливая, особенно с собой.",
+    "Ты умеешь находить красоту в простых вещах, и это вдохновляет.",
+    "Твоё сердце такое большое, что в нём всем найдётся место.",
+    "Ты — мой самый любимый человек.",
+    "Я хочу, чтобы ты знала: ты очень важна.",
+    "Ты делаешь меня лучше просто тем, что рядом.",
+    "Ты такая нежная, и это делает меня счастливым.",
+    "Мне нравится, как ты радуешься мелочам.",
+    "Ты умеешь прощать и отпускать, и это сильно.",
+    "Ты моя любимая тишина и моё любимое «привет».",
+    "Ты — тот человек, с которым хочется встречать каждое утро.",
+    "Я горжусь тем, как ты держишься, даже когда тяжело.",
+    "Ты очень мудрая, хоть и не всегда это замечаешь.",
+    "Твоя аура тёплая, и рядом с тобой хочется улыбаться.",
+    "Ты стараешься изо всех сил, и я это ценю.",
+    "Я хочу однажды показать тебе весь мир, а пока просто буду рядом.",
+    "Ты для меня очень особенная.",
+    "Ты такая искренняя, что мне с тобой легко.",
+    "Ты достойна любви, внимания и бережного отношения.",
+    "Ты умеешь вдохновлять, даже не пытаясь.",
+    "Твоя энергия заряжает всех вокруг.",
+    "Ты очень красивая, когда просто задумчиво смотришь в окно.",
+    "Ты умеешь слушать, и это бесценно.",
+    "Ты моя самая тёплая мысль в холодный день.",
+    "Ты делаешь мир добрее, даже не стараясь.",
+    "Мне нравится, как ты улыбаешься глазами.",
+    "Ты — моя маленькая гордость.",
+    "Ты такая уверенная в себе, когда тебе это нужно.",
+    "Я буду напоминать тебе о твоих силах, когда ты забудешь.",
+    "Ты заслуживаешь сиять, и я верю, что ты будешь.",
+    "Ты самая лучшая часть моих дней.",
+    "С тобой хочется быть собой и не бояться.",
+    "Ты очень ценная для меня, каждый день.",
+    "Твоя забота о других — это твоя сила.",
+    "Я люблю тебя за то, какая ты есть, без условий.",
+    "Ты умеешь радоваться жизни, и это заразительно.",
+    "Ты — то хорошее, что я хочу видеть каждый день.",
+    "Я очень сильно тебя люблю, и это навсегда.",
+    "Ты моя любимая девушка на свете.",
+    "Ты устаёшь, но всё равно идёшь дальше. Это прекрасно.",
+    "Ты такая настоящая, и я горжусь тем, что ты рядом.",
+    "Спасибо, что ты такая, какая ты есть."
+  ];
+  var idx=-1;
+  var gt=document.getElementById('genText'),gc=document.getElementById('genCount'),gb=document.getElementById('genBox');
+  function nextCompliment(){
+    var n;
+    do{n=Math.floor(Math.random()*COMPLIMENTS.length)}while(n===idx&&COMPLIMENTS.length>1);
+    idx=n;
+    gb.classList.add('swap');
+    setTimeout(function(){
+      gt.textContent=COMPLIMENTS[n];
+      gc.textContent=(n+1)+' / '+COMPLIMENTS.length;
+      gb.classList.remove('swap');
+    },350);
+  }
+  document.getElementById('genBtn').addEventListener('click',nextCompliment);
+  gb.addEventListener('click',nextCompliment);
+
+  var phrases=["Ты справляешься лучше, чем думаешь 🌷","Я горжусь тобой","Ты очень сильная","Отдыхай, это важно 💗","Ты заслуживаешь заботы"];
+  var el=document.getElementById('typed'),pi=0,j=0,del=false;
+  function type(){
+    var p=phrases[pi];
+    el.textContent=del?p.slice(0,j--):p.slice(0,j++);
+    var wait=del?40:90;
+    if(!del&&j>p.length){wait=1600;del=true}
+    else if(del&&j<0){del=false;pi=(pi+1)%phrases.length;j=0;wait=400}
+    setTimeout(type,wait);
+  }
+  type();
+
+  var qMsgs={
+    "Добрая":"Ты делаешь мир немного мягче, даже не замечая этого.",
+    "Старательная":"Ты всегда стараешься по-настоящему, и это видно.",
+    "Целеустремлённая":"Ты идёшь к своим целям, даже когда путь непростой.",
+    "Сильная":"Сила не всегда громкая. Иногда это просто продолжать.",
+    "Смелая":"Ты не боишься пробовать и начинать заново.",
+    "Настоящая":"С тобой легко быть собой. Это редкий дар.",
+    "Тёплая":"Рядом с тобой становится спокойнее и светлее.",
+    "Умная":"Ты думаешь глубже, чем многие, и это очень ценно."
+  };
+  var chips=document.querySelectorAll('#qualities .chip');
+  var qm=document.getElementById('qMsg');
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.classList.remove('on')});
+      c.classList.add('on');
+      qm.textContent=qMsgs[c.textContent]||'';
+    });
+  });
+
+  var KEY='amina-wins-v1';
+  var items=document.querySelectorAll('#winsList .win');
+  var bar=document.getElementById('bar');
+  var wm=document.getElementById('winsMsg');
+  var saved=[];
+  try{saved=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){saved=[]}
+  function refresh(){
+    var n=0;
+    items.forEach(function(it,k){
+      if(saved.indexOf(k)>-1){it.classList.add('done');n++}else it.classList.remove('done');
+    });
+    bar.style.width=(n/items.length*100)+'%';
+    wm.textContent=n===items.length?"Ты сегодня молодец во всём! Я очень тобой горжусь 💗":(n?"Так держать, каждая галочка важна":"");
+  }
+  items.forEach(function(it,k){
+    it.addEventListener('click',function(){
+      var p=saved.indexOf(k);
+      if(p>-1)saved.splice(p,1);else saved.push(k);
+      try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}
+      refresh();
+    });
+  });
+  refresh();
+
+  var warmList=[
+    "Ты не обязана всё успевать. Ты уже достаточно.",
+    "Вдохни глубоко. Выдохни. Тебе можно отдохнуть.",
+    "Я люблю тебя просто так, без причины и без условий.",
+    "Ты справляешься. Правда. Не забывай это.",
+    "Пусть сегодня будет немного мягче, чем вчера 🌷"
+  ];
+  var wb=document.getElementById('warmBtn'),wmsg=document.getElementById('warmMsg'),wt;
+  wb.addEventListener('click',function(){
+    wmsg.textContent=warmList[Math.floor(Math.random()*warmList.length)];
+    wmsg.classList.add('show');
+    clearTimeout(wt);
+    wt=setTimeout(function(){wmsg.classList.remove('show')},4200);
+  });
+
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+    });
+  },{threshold:.25});
+  document.querySelectorAll('.card,.permit div').forEach(function(n){io.observe(n)});
+
+  var hearts=['💗','🌷','✨','🌸','💜','🤍'];
+  function spawn(){
+    var h=document.createElement('span');
+    h.className='heart-float';
+    h.textContent=hearts[Math.floor(Math.random()*hearts.length)];
+    h.style.left=Math.random()*100+'vw';
+    h.style.fontSize=(14+Math.random()*22)+'px';
+    var d=7+Math.random()*7;
+    h.style.animationDuration=d+'s';
+    document.body.appendChild(h);
+    setTimeout(function(){h.remove()},d*1000);
+  }
+  setInterval(spawn,900);
+
+  /* Музыка: мелодия и аккорды синтезируются в браузере, без внешних файлов */
+  var ctx=null,master=null,delayNode=null,on=false,timer=null,mBtn=document.getElementById('musicBtn');
+  var STEP=0.5;
+  var MEL=[659,0,784,0,880,784,659,0, 587,0,659,0,523,0,0,0, 523,0,587,0,659,587,523,0, 494,0,523,0,440,0,0,0];
+  var CH=[[262,330,392],[220,262,330],[349,440,523],[392,494,587]];
+  function initAudio(){
+    var AC=window.AudioContext||window.webkitAudioContext;
+    ctx=new AC();
+    master=ctx.createGain();master.gain.value=0.5;master.connect(ctx.destination);
+    var d=ctx.createDelay();d.delayTime.value=0.38;
+    var fb=ctx.createGain();fb.gain.value=0.35;
+    var wet=ctx.createGain();wet.gain.value=0.3;
+    d.connect(fb);fb.connect(d);d.connect(wet);wet.connect(master);
+    delayNode=d;
+  }
+  function tone(f,t,dur,vol,type,wantDelay){
+    var o=ctx.createOscillator(),g=ctx.createGain();
+    o.type=type;o.frequency.value=f;
+    g.gain.setValueAtTime(0.0001,t);
+    g.gain.exponentialRampToValueAtTime(vol,t+0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    o.connect(g);g.connect(master);
+    if(wantDelay){var s=ctx.createGain();s.gain.value=0.4;g.connect(s);s.connect(delayNode)}
+    o.start(t);o.stop(t+dur+0.05);
+  }
+  function scheduleLoop(t0){
+    MEL.forEach(function(f,i){if(f)tone(f,t0+i*STEP,0.9,0.12,'sine',true)});
+    CH.forEach(function(chord,ci){
+      chord.forEach(function(f){tone(f/2,t0+ci*4,3.8,0.05,'triangle',false)});
+    });
+    var next=t0+MEL.length*STEP;
+    timer=setTimeout(function(){if(on)scheduleLoop(next)},(next-ctx.currentTime-1)*1000);
+  }
+  function toggleMusic(){
+    if(!on){
+      initAudio();
+      on=true;
+      scheduleLoop(ctx.currentTime+0.2);
+      mBtn.textContent='🎵 Музыка: вкл';
+      mBtn.classList.add('on');
+    }else{
+      on=false;
+      clearTimeout(timer);
+      ctx.close();
+      ctx=null;
+      mBtn.textContent='🎵 Музыка: выкл';
+      mBtn.classList.remove('on');
+    }
+  }
+  mBtn.addEventListener('click',toggleMusic);
+})();
+</script>
+</body>
+</html>
